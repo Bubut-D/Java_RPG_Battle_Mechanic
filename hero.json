@@ -1,0 +1,1 @@
+{"genre":"Middle Earth","name":"Knight","stats":{"healthPoints":20,"magicPoints":3,"strength":6,"defence":4,"agility":2,"luck":3},"fire":{"name":"Fire","strength":2,"cost":1},"blizzard":{"name":"Blizzard","strength":3,"cost":2},"thunder":{"name":"Thunder","strength":4,"cost":3}}
