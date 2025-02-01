@@ -3,7 +3,6 @@ package GameResources;
 import java.util.Random;
 import GameResources.GameCharacter.ActionType;
 
-
 public class EnemyDecisionMaker implements Runnable {
     private BattleActionWorker worker;
     private Random random;
@@ -12,9 +11,7 @@ public class EnemyDecisionMaker implements Runnable {
     private Magic thunder;
     private Statistics statistics;
 
-
     private static int decisionCount = 0;
-
 
     public EnemyDecisionMaker(BattleActionWorker worker, GameCharacter enemy) {
         this.worker = worker;

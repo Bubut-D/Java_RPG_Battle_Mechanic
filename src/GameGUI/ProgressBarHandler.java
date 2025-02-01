@@ -1,7 +1,6 @@
 package GameGUI;
 
 import GameResources.GameCharacter;
-
 import javax.swing.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -43,7 +42,6 @@ public class ProgressBarHandler implements Runnable{
                 throw new IllegalArgumentException("Illegal Bar Type!");
         }
         SwingUtilities.invokeLater(new ProgressBarHandler(bar,progress,barName));
-
     }
 
     public static void setProgressBars(GameCharacter[] characters, JProgressBar[] bars){

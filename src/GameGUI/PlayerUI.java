@@ -1,15 +1,12 @@
 package GameGUI;
 
 import javax.swing.*;
-import javax.swing.text.SimpleAttributeSet;
 import java.awt.*;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
-
 import GameResources.BattleActionWorker;
 import GameResources.EnemyDecisionMaker;
 import GameResources.GameCharacter;
-//import GameResources.ActionPanelTransitionThread;
 
 public class PlayerUI extends JPanel {
     private JPanel textPanel;
@@ -20,10 +17,9 @@ public class PlayerUI extends JPanel {
     private ItemMenu itemMenu;
     private JPanel transitionPanel;
     private JTextPane textPane;
-    private SimpleAttributeSet attributes;
-    BattleActionWorker worker;
+    public BattleActionWorker worker;
     private EnemyDecisionMaker enemyDecisionMaker;
-//    private ActionPanelTransitionThread transitionThread;
+
     public PlayerUI(int screenWidth, int screenHeight, GameCharacter hero){
         cardLayout = new CardLayout();
         buttonPanel = new JPanel(cardLayout);
@@ -40,8 +36,6 @@ public class PlayerUI extends JPanel {
         textPane.setEditable(false);
         textPane.setFocusable(false);
         textPane.setPreferredSize(new Dimension(textPanel.getWidth()*7/10, textPanel.getHeight()*7/10));
-
-//        transitionThread = new ActionPanelTransitionThread(cardLayout,buttonPanel,textPane);
 
         textPanel.setPreferredSize(new Dimension(screenWidth/2,screenHeight/3));
         textPanel.add(textPane, BorderLayout.CENTER);
@@ -97,7 +91,5 @@ public class PlayerUI extends JPanel {
                 throw new RuntimeException(e);
             }
         }).start();
-
-        //        new Thread(transitionThread).start();
     }
 }

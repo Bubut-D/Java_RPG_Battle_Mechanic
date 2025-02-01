@@ -62,14 +62,6 @@ public class Statistics {
         return luck;
     }
 
-    public void setHealthPoints(int healthPoints) {
-        this.healthPoints = healthPoints;
-    }
-
-    public void setMagicPoints(int magicPoints) {
-        this.magicPoints = magicPoints;
-    }
-
     public void decreaseHealthPoints(int amount){
         if (healthPoints - amount <= 0)
             healthPoints = 0;

@@ -2,11 +2,9 @@ package GameGUI;
 
 import javax.swing.*;
 import java.awt.*;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-
 import GameResources.*;
-public class BattlePanel extends JPanel implements PropertyChangeListener {
+
+public class BattlePanel extends JPanel{
     private EnemyPanel enemyPanel;
     private PlayerPanel playerPanel;
     private PlayerUI ui;
@@ -14,15 +12,10 @@ public class BattlePanel extends JPanel implements PropertyChangeListener {
     GameCharacter enemy;
     BattleActionWorker worker;
 
-    private static boolean[][] changedBar;//         Player | Enemy
-                                         // Health:    []      []
-                                         // MP:        []      []
-
     public BattlePanel(GameCharacter hero, GameCharacter enemy, int screenWidth, int screenHeight){
         System.out.println("BattlePanel");
         this.hero = hero;
         this.enemy = enemy;
-        changedBar = new boolean[2][2];
         setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
         setPreferredSize(new Dimension(screenWidth, screenHeight));
         enemyPanel = new EnemyPanel(enemy,screenWidth,screenHeight);
@@ -31,7 +24,6 @@ public class BattlePanel extends JPanel implements PropertyChangeListener {
         add(playerPanel);
         ui = new PlayerUI(screenWidth,screenHeight,hero);
         worker = new BattleActionWorker(ui.getTextPane(),ui.getCardLayout(),ui.getButtonPanel(),hero,enemy);
-        worker.addPropertyChangeListener(this);
         worker.execute();
         ui.setWorker(worker,enemy);
         ProgressBarHandler.setProgressBars(new GameCharacter[]{hero,enemy},new JProgressBar[]{playerPanel.getStatusPanel().getHp(),playerPanel.getStatusPanel().getMp(),enemyPanel.getStatusPanel().getHp(),enemyPanel.getStatusPanel().getMp()});
@@ -59,50 +51,4 @@ public class BattlePanel extends JPanel implements PropertyChangeListener {
         frame.setLocationRelativeTo(null);
     }
 
-    @Override
-    public void propertyChange(PropertyChangeEvent evt) {
-        if (!"progress".equals(evt.getPropertyName()))
-            return;
-
-        JProgressBar bar;
-
-        try {
-            if (changedBar[0][0]){
-                System.out.println("hero health changed");
-                bar = playerPanel.getStatusPanel().getHp();
-                bar.setString("HP: " + evt.getNewValue() + "/" + hero.getStats().getMaxHealthPoints());
-            }
-            else if (changedBar[0][1]) {
-                System.out.println("enemy health changed");
-                bar = enemyPanel.getStatusPanel().getHp();
-                bar.setString("HP: " + evt.getNewValue() + "/" + enemy.getStats().getMaxHealthPoints());
-            }
-            else if (changedBar[1][0]) {
-                System.out.println("hero mp changed");
-                bar = playerPanel.getStatusPanel().getMp();
-                bar.setString("MP: " + evt.getNewValue() + "/" + hero.getStats().getMaxMagicPoints());
-            }
-            else if (changedBar[1][1]) {
-                System.out.println("enemy health changed");
-                bar = enemyPanel.getStatusPanel().getHp();
-                bar.setString("MP: " + evt.getNewValue() + "/" + enemy.getStats().getMaxMagicPoints());
-            }
-            else
-                throw new Exception("Invalid bar status change!");
-
-            bar.setValue((Integer) evt.getNewValue());
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private static void clearChangedBar(){
-        for (int i = 0; i < 2; i++)
-            for (int j = 0; j < 2; j++)
-                changedBar[i][j] = false;
-    }
-    public static void setChangedBar(int row, int collumn){
-        clearChangedBar();
-        changedBar[row][collumn] = true;
-    }
 }

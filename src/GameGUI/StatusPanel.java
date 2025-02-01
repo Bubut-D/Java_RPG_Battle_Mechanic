@@ -10,7 +10,6 @@ public class StatusPanel extends JPanel {
     private JProgressBar hp;
     private JProgressBar mp;
 
-
     StatusPanel(GameCharacter character, int screenWidth, float nameAlignment){
         // Use a more predictable layout manager
         setLayout(new BorderLayout());

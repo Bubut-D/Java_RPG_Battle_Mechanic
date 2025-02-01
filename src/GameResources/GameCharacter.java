@@ -38,8 +38,7 @@ public class GameCharacter {
     }
 
     public GameCharacter createCopy(){
-        GameCharacter copy = new GameCharacter(genre, name, stats.createCopy(), fire.createCopy(), blizzard.createCopy(), thunder.createCopy());
-        return copy;
+        return new GameCharacter(genre, name, stats.createCopy(), fire.createCopy(), blizzard.createCopy(), thunder.createCopy());
     }
 
     @Override

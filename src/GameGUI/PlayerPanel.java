@@ -18,9 +18,7 @@ public class PlayerPanel extends JPanel {
         this.setDoubleBuffered(true);
         Image image = new ImageIcon("player_sprite.png").getImage().getScaledInstance(120,124,Image.SCALE_SMOOTH);
         iconLabel = new JLabel(new ImageIcon(image)); // TODO: Make this specific to each hero
-//      iconLabel.setPreferredSize(new Dimension(screenWidth/5,screenHeight*3/10));
-//      iconLabel.setMaximumSize(new Dimension(screenWidth/5,screenHeight*3/10));
-//      iconLabel.setMinimumSize(new Dimension(screenWidth/5,screenHeight*3/10));
+
         iconLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
         gbc.gridx = 1;
         gbc.gridy = 2;
